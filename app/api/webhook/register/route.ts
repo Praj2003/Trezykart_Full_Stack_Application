@@ -14,8 +14,8 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  // Verify Clerk webhook
   const headerPayload = await headers();
-
   const svix_id = headerPayload.get("svix-id");
   const svix_timestamp = headerPayload.get("svix-timestamp");
   const svix_sign = headerPayload.get("svix-signature");
@@ -46,8 +46,6 @@ export async function POST(req: NextRequest) {
       { status: 400 }
     );
   }
-
-  const { id: clerkId } = evt.data;
   const eventType = evt.type;
 
   if (eventType === "user.created") {
@@ -55,23 +53,16 @@ export async function POST(req: NextRequest) {
       const { email_addresses, first_name, primary_email_address_id } =
         evt.data;
 
-      // Try to get primary email, fallback to the first one
+      // Get primary email if available
       const primaryEmail =
         email_addresses.find(
           (email) => email.id === primary_email_address_id
         ) ?? email_addresses[0];
 
-      if (!primaryEmail) {
-        console.error("❌ No email found for user:", clerkId);
-        return new Response("No email found", { status: 400 });
-      }
 
-      // Check if the user already exists
-      const existingUser = await prisma.user.findUnique({
-        where: {
-          id: clerkId, // using Clerk user ID as DB id
-        },
-      });
+      const clerkId = evt.data.id!;
+
+      const existingUser = await prisma.user.findUnique({ where: { clerkId } });
 
       if (existingUser) {
         console.log("ℹ️ User already exists:", existingUser.email);
@@ -79,16 +70,16 @@ export async function POST(req: NextRequest) {
       }
 
       // Create new user
-      const newUser = await prisma.user.create({
-        data: {
-          id: clerkId, // Clerk user ID
-          name: first_name ?? "No Name",
-          email: primaryEmail.email_address,
-          role: "USER",
-        },
-      });
-
-      console.log("✅ New user created:", newUser.email);
+      if (!existingUser) {
+         await prisma.user.create({
+          data: {
+            clerkId: clerkId,
+            name: first_name ?? "No Name",
+            email: primaryEmail?.email_address ?? null,
+            role: "USER",
+          },
+        });
+      }
     } catch (error) {
       console.error("❌ Error creating user in DB:", error);
       return new Response("Error creating user", { status: 500 });
