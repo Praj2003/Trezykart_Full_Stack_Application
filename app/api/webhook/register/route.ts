@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
       "svix-signature": svix_sign,
     }) as WebhookEvent;
   } catch (err) {
-    console.error("❌ Webhook verification failed:", err);
+    console.error("Webhook verification failed:", err);
     return NextResponse.json(
       { message: "Webhook verification failed" },
       { status: 400 }
@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
       const existingUser = await prisma.user.findUnique({ where: { clerkId } });
 
       if (existingUser) {
-        console.log("ℹ️ User already exists:", existingUser.email);
+        console.log("User already exists:", existingUser.email);
         return new Response("User already exists", { status: 200 });
       }
 
@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
         });
       }
     } catch (error) {
-      console.error("❌ Error creating user in DB:", error);
+      console.error("Error creating user in DB:", error);
       return new Response("Error creating user", { status: 500 });
     }
   }
