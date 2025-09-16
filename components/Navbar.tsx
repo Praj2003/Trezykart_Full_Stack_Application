@@ -8,6 +8,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -21,13 +22,13 @@ const Navbar = () => {
           whileHover={{ scale: 1.1, backgroundColor: "white", color: "black" }}
           className="text-white cursor-pointer px-3 py-2 rounded-md"
         >
-          Home
+          <Link href={"/"}>Home</Link>
         </motion.li>
         <motion.li
           whileHover={{ scale: 1.1, backgroundColor: "white", color: "black" }}
           className="text-white cursor-pointer px-3 py-2 rounded-md"
         >
-          Products
+          <Link href={"/categoryShow"}>Products</Link>
         </motion.li>
         <motion.li
           whileHover={{ scale: 1.1, backgroundColor: "white", color: "black" }}
@@ -42,13 +43,15 @@ const Navbar = () => {
           Contact
         </motion.li>
       </ul>
-      
+
       <SignedOut>
-         <SignInButton>
-           <div className="flex items-center justify-center">
-              <motion.button className="px-3 py-2 bg-neutral-800 border border-amber-700 rounded-lg text-white font-bold">Sign In</motion.button>
-           </div>
-         </SignInButton>
+        <SignInButton>
+          <div className="flex items-center justify-center">
+            <motion.button className="px-3 py-2 bg-neutral-800 border border-amber-700 rounded-lg text-white font-bold">
+              Sign In
+            </motion.button>
+          </div>
+        </SignInButton>
       </SignedOut>
     </div>
   );

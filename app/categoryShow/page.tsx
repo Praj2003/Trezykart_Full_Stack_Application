@@ -1,6 +1,7 @@
 import React from "react";
 import ColourfulText from "@/components/ui/colourful-text";
 import Image from "next/image";
+import Link from "next/link";
 
 const CategoryShowPage = () => {
   return (
@@ -13,9 +14,9 @@ const CategoryShowPage = () => {
         <div className="flex items-center justify-center flex-wrap gap-10">
           <div className="flex flex-col items-center justify-center">
             <div className="lg:w-[200px] md:w-[150px] w-[150px] lg:h-[200px] md:h-[150px] h-[150px] bg-white rounded-full relative cursor-pointer">
-              <Image src={"/images/ClothingTrezy.jpg"} fill={true} alt="Clothing Category" className="rounded-full"/>
+              <Link href={"/clothingSection"}><Image src={"/images/ClothingTrezy.jpg"} fill={true} alt="Clothing Category" className="rounded-full"/></Link>
             </div>
-            <p className="text-white font-semibold mt-2 text-2xl">Clothing</p>
+           <p className="text-white font-semibold mt-2 text-2xl">Clothing</p>
           </div>
 
           <div className="flex flex-col items-center justify-center">
