@@ -57,7 +57,7 @@ export default function Home() {
 
       <div className="Picture w-full lg:flex items-center justify-center md:hidden hidden">
         <CardContainer className="mt-10">
-          <CardBody className="w-[500px] h-[500px] border-3 bg-white  border-amber-600 shadow-2xl flex flex-col items-center justify-center gap-6">
+          <CardBody className="w-[500px] h-[500px] border-3 bg-white  border-amber-600 shadow-2xl flex flex-col items-center justify-center gap-6 rounded-4xl">
             <CardItem translateZ={20}>
               <h1 className=" font-bold text-2xl bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 bg-clip-text text-transparent">
                 Your cart been waiting for you at TrezyKart

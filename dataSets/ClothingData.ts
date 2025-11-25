@@ -1,6 +1,6 @@
 const clothingData = [
   {
-    id: 1,
+    id: "1",
     name: "Classic White T-Shirt",
     category: "Men",
     description: "Soft cotton slim-fit t-shirt for everyday wear.",
@@ -10,7 +10,7 @@ const clothingData = [
     image: "https://via.placeholder.com/300x400?text=White+T-Shirt",
   },
   {
-    id: 2,
+    id: "2",
     name: "Denim Blue Jeans",
     category: "Men",
     description: "Regular-fit stretchable denim jeans with 5 pockets.",
@@ -20,7 +20,7 @@ const clothingData = [
     image: "https://via.placeholder.com/300x400?text=Blue+Jeans",
   },
   {
-    id: 3,
+    id: "3",
     name: "Floral Summer Dress",
     category: "Women",
     description: "Lightweight floral print dress, perfect for casual outings.",
@@ -30,7 +30,7 @@ const clothingData = [
     image: "https://via.placeholder.com/300x400?text=Summer+Dress",
   },
   {
-    id: 4,
+    id: "4",
     name: "Black Leather Jacket",
     category: "Women",
     description: "Premium faux leather biker jacket with zipper closure.",
@@ -40,7 +40,7 @@ const clothingData = [
     image: "https://via.placeholder.com/300x400?text=Leather+Jacket",
   },
   {
-    id: 5,
+    id: "5",
     name: "Kids Cartoon Hoodie",
     category: "Kids",
     description: "Cute and cozy hoodie with cartoon print for kids.",
@@ -50,7 +50,7 @@ const clothingData = [
     image: "https://via.placeholder.com/300x400?text=Cartoon+Hoodie",
   },
   {
-    id: 6,
+    id: "6",
     name: "Boys Checked Shirt",
     category: "Kids",
     description: "Cotton half-sleeve checked shirt for casual wear.",

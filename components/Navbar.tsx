@@ -3,12 +3,13 @@ import React from "react";
 import { motion } from "motion/react";
 import {
   SignInButton,
-  SignUpButton,
   SignedIn,
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
 import Link from "next/link";
+
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
   return (
@@ -17,7 +18,7 @@ const Navbar = () => {
         <h1 className="font-bold text-white text-lg">Trezykart</h1>
       </div>
 
-      <ul className="flex items-center justify-center gap-8 text-md font-bold ">
+      <ul className="items-center justify-center gap-8 text-md font-bold lg:flex md:flex hidden">
         <motion.li
           whileHover={{ scale: 1.1, backgroundColor: "white", color: "black" }}
           className="text-white cursor-pointer px-3 py-2 rounded-md"
@@ -53,6 +54,16 @@ const Navbar = () => {
           </div>
         </SignInButton>
       </SignedOut>
+
+      <SignedIn>
+        <div className="flex items-center justify-center gap-3 mr-4">
+          <GiHamburgerMenu
+            size={30}
+            className="text-amber-700 cursor-pointer lg:hidden md:hidden"
+          />
+          <UserButton />
+        </div>
+      </SignedIn>
     </div>
   );
 };
