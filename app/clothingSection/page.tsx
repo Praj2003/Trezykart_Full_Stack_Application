@@ -11,7 +11,7 @@ import { toast } from "sonner";
 const page = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [filteredData, setFilteredData] = useState(clothingData);
-  const [loading, setLoading] = useState(false);
+  const [_loading, setLoading] = useState(false);
   const [cartItems, setCartItems] = useState<ProductItem[]>([]);
   const { user } = useUser();
 
