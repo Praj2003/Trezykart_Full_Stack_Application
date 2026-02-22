@@ -28,7 +28,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${poppins.variable} antialiased min-w-full min-h-screen bg-slate-900`}
+          className={`${poppins.variable} antialiased min-w-full  bg-slate-900`}
         >
           <Navbar />
           {children}
