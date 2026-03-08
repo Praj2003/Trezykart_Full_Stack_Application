@@ -15,7 +15,9 @@ const Navbar = () => {
   return (
     <div className="min-w-full flex items-center justify-between top-0 fixed bg-black/80 border-b border-amber-500/30  px-4 py-5 shadow-md z-20">
       <div className="flex items-center justify-center gap-3">
-        <h1 className="font-bold text-white text-lg">Trezykart</h1>
+        <Link href={"/"}>
+          <h1 className="font-bold text-white text-lg">Trezykart</h1>
+        </Link>
       </div>
 
       <ul className="items-center justify-center gap-8 text-md font-bold lg:flex md:flex hidden">
@@ -41,7 +43,7 @@ const Navbar = () => {
           whileHover={{ scale: 1.1, backgroundColor: "white", color: "black" }}
           className="text-white cursor-pointer px-3 py-2 rounded-md"
         >
-          Contact
+          <Link href={"/myCart"}>MyCart</Link>
         </motion.li>
       </ul>
 

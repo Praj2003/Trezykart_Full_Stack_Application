@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { motion } from "motion/react";
 import { FaPlus } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
 import { ProductItem } from "@/schemas/productItem";
 
 const MyCartPage = () => {
@@ -12,7 +13,7 @@ const MyCartPage = () => {
   const email = user?.primaryEmailAddress?.emailAddress;
   const name = user?.username;
   const [products, setProducts] = useState<ProductItem[]>([]);
-  
+
   useEffect(() => {
     fetchProducts();
   }, [email]);
@@ -56,6 +57,27 @@ const MyCartPage = () => {
     }
   };
 
+  const handleQuantityDecrease = async () => {
+    try {
+      const response = await fetch("/api/products/updateQuantity", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: products[0].id,
+          quantity: products[0].quantity - 1,
+        }),
+      });
+
+      if (response.ok) {
+        await fetchProducts();
+      }
+    } catch (err) {
+      console.error("Error updating product quantity:", err);
+    }
+  };
+
   return (
     <div className="min-w-full min-h-[70vh]">
       <div className="container mx-auto mt-32">
@@ -86,6 +108,14 @@ const MyCartPage = () => {
                       className="bg-amber-600 text-white p-2 rounded-md flex items-center justify-center"
                     >
                       <FaPlus />
+                    </motion.button>
+
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      onClick={handleQuantityDecrease}
+                      className="bg-amber-600 text-white p-2 rounded-md flex items-center justify-center"
+                    >
+                      <FaMinus />
                     </motion.button>
                   </div>
                 </div>
